@@ -1,0 +1,1 @@
+These files take the third method of binary visualization, since it has the least loss, and attempts to reduce loss or increaase accuracy further by changing parameters in the CNN, like input layer size, adding more layers, etc.
