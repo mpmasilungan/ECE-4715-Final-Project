@@ -33,7 +33,7 @@ print(legitimate_counter + phishing_counter)
 binary_html = []
 error_index = []
 
-# HTML TO BINARY
+### HTML TO BINARY
 for i in range(length_url):
     try:
         res = ''.join(format(i, '08b') for i in bytearray(copy_html[i], encoding ='utf-8'))
@@ -43,7 +43,7 @@ for i in range(length_url):
         print(f"Error at {i + 1}")
         error_index.append(i + 1)
 
-# BINARY VISUALIZATION ATTEMPT 1
+### BINARY VISUALIZATION ATTEMPT 1
 
 from PIL import Image
 import numpy as np
@@ -89,7 +89,7 @@ for i in range(len(binary_html)):
 
     print(f"Finished {i + 1}")
 
-# CREATING LABELS AS BINARY FOR EACH IMAGE
+### CREATING LABELS AS BINARY FOR EACH IMAGE
 
 #phishing = 0; legitimate = 1
 status_as_binary = []
@@ -100,7 +100,7 @@ for i in range(len(copy_status)):
     else:
         status_as_binary.append(0)
 
-# COPYING TO ANOTHER ARRAY TO PRESERVE ORIGINAL
+### COPYING TO ANOTHER ARRAY TO PRESERVE ORIGINAL
 copy_images = []
 copy_status_binary = []
 
@@ -110,7 +110,7 @@ for i in range(len(binary_images)):
 for i in range(len(status_as_binary)):
     copy_status_binary.append(status_as_binary[i])
 
-# LABEL CREATION FOR TENSORFLOW
+### LABEL CREATION FOR TENSORFLOW
 import tensorflow as tf
 import os
 from tensorflow.keras.preprocessing import image
@@ -141,7 +141,7 @@ print(f"Test Images Shape: {test_images.shape}")
 print(f"Train Labels Shape: {train_labels.shape}")
 print(f"Test Labels Shape: {test_labels.shape}")
 
-# TRAINING MODEL USING TENSORFLOW
+### TRAINING MODEL USING TENSORFLOW
 
 training_dataset = tf.data.Dataset.from_tensor_slices((train_images, train_labels))
 testing_dataset = tf.data.Dataset.from_tensor_slices((test_images, test_labels))
@@ -167,7 +167,7 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 # Train the model on the dataset
 model.fit(training_dataset, epochs=100)
 
-# TESTING MODEL
+### TESTING MODEL
 
 test_images_resized = tf.image.resize(test_images, (28, 28))
 
